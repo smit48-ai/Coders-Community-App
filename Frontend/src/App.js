@@ -37,11 +37,11 @@ function App() {
         <Routes>
            <Route exact path="/" element={<Home/>}></Route>
            <Route exact path="/Login" element={!isLoggedin || !user?.userdata?.isEmailVerified?<LoginPage/>:<Navigate replace to="/Main"></Navigate>}></Route>
-           <Route path="/Main" element={isLoggedin?<Main/>:<Navigate replace to="/Login"></Navigate>}></Route>
-           <Route path="/Post" element={isLoggedin?<Post/>:<Navigate to="/Login"></Navigate>}></Route>
-           <Route path="/Profile/:id" element={isLoggedin?<Profile/>:<Navigate to="/Login"></Navigate>}></Route>
-           <Route path="/Readpost/:id" element={isLoggedin?<Readpost/>:<Navigate to="/Login"></Navigate>}></Route>
-           <Route path="/SavePosts" element={isLoggedin?<SavePage/>:<Navigate to="/Login"></Navigate>}></Route>
+           <Route path="/Main" element={isLoggedin && user?.userdata?.isEmailVerified ?<Main/>:<Navigate replace to="/Login"></Navigate>}></Route>
+           <Route path="/Post" element={isLoggedin && user?.userdata?.isEmailVerified ?<Post/>:<Navigate to="/Login"></Navigate>}></Route>
+           <Route path="/Profile/:id" element={isLoggedin && user?.userdata?.isEmailVerified ?<Profile/>:<Navigate to="/Login"></Navigate>}></Route>
+           <Route path="/Readpost/:id" element={isLoggedin && user?.userdata?.isEmailVerified ?<Readpost/>:<Navigate to="/Login"></Navigate>}></Route>
+           <Route path="/SavePosts" element={isLoggedin && user?.userdata?.isEmailVerified ?<SavePage/>:<Navigate to="/Login"></Navigate>}></Route>
            <Route path="/:id/verify/:token" element={<Emailverification/>}></Route>
            <Route path="/VerifyPage" element={<VerifyEmail/>}></Route>
            <Route path="*" element={<Pagenotfound/>}></Route>
