@@ -98,7 +98,7 @@ export const UnFollowUser = async(req,res)=>{
 
 export const TopFollowed=async(req,res)=>{
     try{
-        const topuser= await UserModel.find({}).sort({Followers:-1}).limit(10);
+        const topuser= await UserModel.find({isEmailVerified:true}).sort({Followers:-1}).limit(10);
         res.status(200).json(topuser);
     }
     catch(err){
