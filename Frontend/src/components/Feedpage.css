@@ -1,0 +1,28 @@
+.typesoffeed{
+    margin-top: 10%;
+}
+.typesoffeed ul{
+    list-style: none;
+    padding: 0;
+}
+.typesoffeed ul {
+    display: flex;
+    flex-wrap: wrap;
+}
+.typesoffeed ul li{
+    margin: 0 10px;
+    font-family: var(--font3);
+    font-weight: 500;
+    font-size: 1.5rem;
+}
+.feeds{
+    height: 70vh;
+    padding: 0 10px;
+    overflow-y: scroll;
+    /* min-width: 400px; */
+}
+::-webkit-scrollbar{
+    display: none;
+}
+
+

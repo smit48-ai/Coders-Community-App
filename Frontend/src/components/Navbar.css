@@ -1,0 +1,94 @@
+
+.Navcontainer{ 
+    background-color: black;
+    position: sticky;
+    z-index: 100;
+    top:0;
+    padding: 7vh 7vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* for the company name */
+.Navcontainer span{
+   font-family: 'Playfair Display', serif;
+   text-decoration: none;
+   font-size: 2.5rem;
+   color: white;
+}
+
+/* for menu elements */
+.Navcontainer a{
+   font-family: 'Playfair Display', serif;
+   text-decoration: none;
+   font-size: 1.5rem;
+   color: white;
+}
+
+
+
+.Navcontainer ul{
+    display: flex;
+}
+
+.Navcontainer ul li{
+    list-style: none;
+    width: fit-content;
+    margin-left: 40px;
+    text-align: right;
+}
+
+.Invisible{
+    visibility: hidden;
+}
+
+.Navcontainer ul li a{
+    padding: 0px;
+}
+
+.Navcontainer ul li a:before
+{
+    position: relative;
+    left:0px;
+    content: "<";
+    opacity: 0;
+    transition: all 0.3s;
+}
+
+.Navcontainer ul li a:after
+{
+    position: relative;
+    right: 0px;
+    content: ">";
+    opacity: 0;
+    transition: all 0.3s;
+}
+
+.Navcontainer ul li a:hover:before
+{
+    opacity: 1;
+    transform: translateX(-30px) scaleY(1.5);
+}
+
+.Navcontainer ul li a:hover:after{
+    opacity: 1;
+    transform: translateX(+30px)  scaleY(1.5);
+}
+
+.Navcontainer ul li a:hover{
+    color: #66fcf1;
+}
+
+
+@media (max-width:768px){
+    .Navcontainer ul li:last-child{
+        display: none;
+    }
+}
+
+@media (max-width:500px){
+    .Navcontainer ul li:first   -child{
+        display: none;
+    }
+}
+

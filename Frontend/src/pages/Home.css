@@ -1,0 +1,29 @@
+body{
+    margin: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    /* background-color: var(--first-color); */
+}
+
+:root{
+    --second-color:#66fcf1;
+    --first-color:#D3D3D3;
+    --third-color: #fff;
+    --fourth-color: #000;
+    --font1:'Playfair Display', serif;
+    --font2:'Roboto', sans-serif;
+    --font3:'Lato-bold';
+}
+    
+
+button{
+   cursor: pointer;
+}
+/* home screen */
+.homescreen{
+    background-color: black;
+    height: 100vh;
+    overflow:scroll;
+}
+
+

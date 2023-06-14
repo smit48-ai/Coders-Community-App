@@ -1,0 +1,24 @@
+.header1{
+    display: flex;
+    background-color: black;
+    justify-content: space-between;
+    padding: 0% 15%;
+    align-items: center;
+}
+.header1 h1{
+     color: white;
+     font-family: 'Playfair Display', serif;
+}
+.header1 .loginbutton{
+    margin:10px 10px;
+    font-size: 1.5rem;
+    width: 110px;
+}
+
+
+
+@media (max-width:500px) {
+    .header1 div{
+        display: none;
+    }
+}
