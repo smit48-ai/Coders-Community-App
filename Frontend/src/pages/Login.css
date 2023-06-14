@@ -1,0 +1,80 @@
+.AppName{
+    font-family: var(--font1);
+    font-size: 2rem;
+}
+
+#LoginForm{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--first-color);
+}
+
+.Login_Box{
+    width: 300px;
+    border-radius: 10px;
+    margin: auto;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+    background-color: var(--third-color);
+}
+
+.logincredentials{
+    font-size: 1rem;
+    font-family: var(--font3);
+    width: 95%;
+    border-radius: 5px;
+    height: 30px;
+    border: 2px solid var(--fourth-color);
+}
+
+.Login_Box nav{
+    width: 100%;
+    box-shadow: 10px 5px 20px grey inset;
+    border-radius: 10px;
+    display: flex;
+}
+
+.Login_Box nav span{
+    min-width: fit-content;
+    flex-basis: 50%;
+    padding: 10px 0 10px 0;
+    text-align: center;
+    font-style: var(--font1);
+    color: black;
+    font-size: 1.5rem;
+}
+
+.buttonv3{
+    color: white;
+    min-width: fit-content;
+    background-color: var(--fourth-color);
+    margin: auto;
+    border: 0px;
+    width: 30%;
+    height: 40px;
+    font-family: var(--font1);
+    font-size: 1.5rem;
+    border-radius: 10px;
+}
+
+
+hr{
+    color: var(--forth-color);
+}
+.fa-google{
+    margin: 0%;
+    padding: 0%;
+}
+
+
+@media (max-width:470px){
+    .Login_Box{
+        width: 80vw;
+        padding: 20px;
+    }
+}

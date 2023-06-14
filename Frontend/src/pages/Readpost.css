@@ -1,0 +1,69 @@
+.Readpost{
+    background-color: #EEEEEE;
+    display: flex;
+    height: 90vh;
+    overflow: scroll;
+}
+
+.Heading{
+    margin-bottom: 20px;
+}
+
+.Reading{
+    margin-top: 50px;
+    margin-bottom: 35px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    flex-basis: 700px;
+    border-radius: 10px;
+    padding: 10px;
+    overflow-y: scroll;
+}
+
+.Contentpart{
+    font-size: 1.4rem;
+    font-family: 'Crimson Text', serif;
+}
+
+.Comments{
+    border-top: 2px solid lightgray;
+}
+
+.Comments img{
+    width: 40px;
+    margin-left: 10px;
+    border-radius: 50%;
+    margin-top: 10px;
+}
+
+ul{
+    padding: 0;
+    list-style: none;
+}
+
+.buttonsection{
+    /* margin-left: 100px;*/
+    margin-right: 20px;
+    margin-top: 50px; 
+}
+
+.writecomment{
+   grid-column: 2/12;
+   min-height: 100px;
+}
+
+.make{
+    display: inline-grid;
+    grid-template-columns: repeat(12,60px);
+    padding: 10px;
+}
+
+.makecomment{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.makecomment .buttonv2{
+    margin: 2px auto;
+}

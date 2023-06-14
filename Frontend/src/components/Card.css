@@ -1,0 +1,115 @@
+.Card{
+    margin-top: 3%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 10px grey;
+    border: 1px solid grey;
+    /* min-width: fit-content; */
+    width: 600px;
+}
+
+.mainsection{
+    padding: 14px;
+}
+
+.Card img{
+    padding: 0;
+    width: 100%;
+    object-fit: cover;
+    /* for present testing  */
+    border-radius: 10px 10px 0px 0px;
+}
+
+.Heading{
+    cursor: pointer;
+    margin: 0 0 5px 0;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+}
+
+.persondetails{
+    color: gray;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* problem in img border radius but it looks good */
+.persondetails img{
+    border: 2px solid white;
+    object-fit: cover;
+    border-radius: 100%;
+    /* we have to think about the sizing in responsive */
+    width: 40px;
+    height: 40px;
+    margin-right: 8px;
+}
+
+.persondetails a{
+   
+   color: gray;
+   text-decoration: none;
+}
+
+.Tags{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    color: lightgrey;
+}
+
+.Tags a{
+    color: gray;
+    text-decoration: none;
+    padding: 10px;
+}
+
+.Tags a:first-child{
+    padding-left: 20px;
+}
+
+.Tags a:hover{
+    background-color: lightgray;
+    color: black;
+    
+    border-radius: 10px;
+}
+
+/* targeting the icons */
+
+/* try to handle this likes and all in more better way */
+.icons{
+    padding: 4px;
+}
+
+.btn{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 30px;
+}
+
+.btn-first{
+    display: flex;
+    align-items: center;
+}
+
+.btn a{
+    text-decoration: none;
+    color: black;
+    padding-right: 10px;
+}
+
+
+
+@media (max-width:768px) {
+    .Card{
+        max-width: 350px;
+    }
+}
+
+@media (max-width:450px) {
+    .Card{
+        max-width: "100%";
+    }
+}

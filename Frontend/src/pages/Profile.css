@@ -1,0 +1,203 @@
+.backgroundimg{
+     height: 75vh;
+     width: 100vw;
+     margin-bottom: 150px;
+    
+} 
+
+.Profile{
+    background-color: var(--first-color);
+    height: 100vh;
+    width: 100vw;
+    overflow-y: scroll;
+}
+
+
+.Bio *{
+    margin: 10px;
+}
+
+input[type=text]{
+    height: 30px;
+}
+
+input[type=password]{
+    height: 30px;
+}
+
+textarea{
+    height: 100px;
+}
+
+.profileimg{
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    border: 10px solid white;
+    position: relative;
+    top: -40vh;
+    left: 0vw;
+}
+
+.profile-edit{
+    position: relative;
+    top: -40vh;
+    left: -15vw;
+}
+
+.user-posts{
+    width:50vw;
+    height:500px;
+    overflow-y:scroll;
+    display:flex;
+    gap:30px;
+    flex-wrap:wrap;
+}
+
+.cover-edit{
+    position: relative;
+    top: -60vh;
+    left: 85vw;
+}
+
+.ids{
+    position: relative;
+    top: -60vh;
+    left: 100vw;
+}
+
+.leftcard{
+    background-color: var(--third-color);
+    min-width: 200px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;;
+    padding: 20px;
+    margin-right: 70px;
+}
+
+.leftcard ul li{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.leftcard ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+ul:hover{
+    background-color: none;
+}
+
+.cardssection{
+    margin:0px 100px;
+    margin-top:10px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; 
+}
+
+.Bio *{
+   flex-wrap: wrap;
+}
+
+.Bio{
+    background-color: var(--third-color);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+}
+
+.Description{
+    font-family: var(--font3);
+    word-wrap: break-word;
+}
+
+.Interests-section{
+    min-height: 50px;
+    border: 1px solid black;
+    width: 90%;
+    margin: 10px;
+    content: "your tags";
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.interest-button{
+    background-color: gray;
+    color: black;
+    text-decoration: none;
+    border-radius: 5%;
+    display: flex;
+}
+
+.interest{
+    color: gray;
+    text-decoration: none;
+    border-radius: 5%;
+    display: flex;
+}
+
+.interest:hover{
+   background-color: darkgrey;
+   color: black;
+}
+
+@media (max-width:1100px) {
+    .leftcard{
+        margin: auto;
+        margin-bottom: 20px;
+    }
+    .profile-edit{
+        position: relative;
+        top: -40vh;
+        left: -18vw;
+    }
+    
+    .cover-edit{
+        position: relative;
+        top: -115vh;
+        left: 0vw;
+    }
+    .Bio{
+        width: 70vw;
+    }
+}
+@media (max-width:470px) {
+    .profileimg{
+        left:7.5vw;
+    }
+    .user-posts{
+        width:80vw;
+        height:500px;
+        overflow-y:scroll;
+        display:flex;
+        gap:30px;
+        flex-wrap:wrap;
+    }
+    .cover-edit{
+        position: relative;
+        top: -95vh;
+        left: 0vw;
+    }
+    .profile-edit{
+        position: relative;
+        top: -45vh;
+        left: 12vw;
+    }
+    .ids{
+        position: static;
+        top: 0;
+        right: 0;
+        margin: 0 35vw;
+    }
+    .Bio{
+        width: 150vw;
+    }
+}

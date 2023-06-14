@@ -1,0 +1,16 @@
+#Mainpage{
+    background-color: #EEEEEE;
+    height: 100vh;
+}
+.content{
+    display: flex;
+    /* padding-top: 80px; */
+    /* flex-wrap: wrap; */
+}
+
+@media (max-width:900px) {
+    .content{
+        justify-content: center;
+    }
+}
+

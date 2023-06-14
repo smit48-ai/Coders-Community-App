@@ -1,0 +1,163 @@
+#postform{
+    display: grid;
+    grid-template-columns: 80% 20%;
+    background-color: white;
+    width: 70vw;
+    height: 500px;
+    margin: 20px auto;
+    border-radius: 20px;
+    padding: 10px;
+    overflow-y: scroll;
+}
+
+.Writingarea{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 95%;
+    width: 100%;
+}
+
+/* .buttonv2{
+    margin:auto;
+    font-family: 'Lato', serif;
+    display: block;
+    border: 0px;
+    border-radius: 15px;
+    font-size: 1.5rem;
+    width: 150px;
+    background-color: #45a29e;
+    color: white;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+   
+} */
+
+/* hover effect to buttonv2 */
+/* .buttonv2:hover{
+   background-color: var(--second-color); 
+   transition: 0.5s;
+} */
+
+.tag-button{
+    background-color: gray;
+    color: black;
+    text-decoration: none;
+    border-radius: 5%;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    margin: 10px;
+}
+
+.Tags-section{
+    min-height: 30px;
+    border: 1px solid black;
+    width: 100%;
+    margin: 10px;
+    margin-left: 0;
+    content: "your tags";
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.Writingarea1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10px 0px;
+    width: 90%;
+}
+
+.Writingarea1 input{
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    border-bottom: 2px solid black;
+    height: fit-content;
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.remaining{
+    padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.subheading{
+    text-align: left;
+    
+}
+.Toolbar{
+    padding: 10px;
+}
+
+.Toolbar li{
+    margin: 10px;
+    margin-top: 0px;
+    margin-left: 0px;
+}
+.Toolbar li:hover{
+    cursor: pointer;
+    background-color: lightblue;
+    border-radius: 10px;
+    padding: 2px;
+}
+.Toolbar ul{
+    list-style: none;
+    padding: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.Writingarea2 {
+    height: 90%;
+    width: 90%;
+}
+
+.Writingarea2 textarea{
+     height: 300px; 
+     width: 100%; 
+     border: 1px solid grey;
+     outline: none;
+     background-color: transparent;
+     resize: none;
+     font-size: 1rem;
+}
+
+.Buttons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (max-width:900px) {
+    #postform{
+        margin:auto;
+        grid-template-columns: 100%;
+        width: 93%;
+        height: 85vh;
+        overflow-y: scroll;
+    }
+    .Toolbar{
+        align-items: start;
+    }
+    .remaining{
+        flex-direction: row;
+        justify-content: space-between;
+        grid-row: 1;
+        grid-column: 1;
+        padding-top: 0;
+        margin-top: 0;
+    }
+    .Writingarea{
+        grid-row: 2;
+    }
+}
+
