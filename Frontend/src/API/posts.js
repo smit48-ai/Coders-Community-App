@@ -1,5 +1,5 @@
 import axios from 'axios';
-const url="http://localhost:8900/posts";
+const url="https://transfer-app-api.onrender.com/posts";
 
 export const fetchPosts = ()=> axios.get(url);
 export const createPost = (data)=>axios.post(`${url}/create`,data,{headers: {
