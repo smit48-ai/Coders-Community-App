@@ -1,5 +1,5 @@
 import axios from 'axios';
-const url="http://localhost:8900/user";
+const url="https://transfer-app-api.onrender.com/user";
 
 
 
