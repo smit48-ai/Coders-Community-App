@@ -16,15 +16,15 @@ function Feedpage(){
          dispatch(getPosts());
      },[dispatch]);
      
-     return <div className='Feedpage'>
-            <div className='typesoffeed'>
-                 <ul>
-                  <li style={{textDecoration:"underline"}}>Your feed</li>
-                  <li>Recommended</li>
-                  <li>Top</li>
+     return <div className=' mx-0'>
+            <div className='font-Poppins mx-0'>
+                 <ul className='flex gap-2 text-xl'>
+                  <li className='hover:bg-white hover:text-blue-500 p-2 rounded-md hover:cursor-pointer'>Feed</li>
+                  <li className='hover:bg-white hover:text-blue-500 p-2 rounded-md hover:cursor-pointer'>Recommended</li>
+                  <li className='hover:bg-white hover:text-blue-500 p-2 rounded-md hover:cursor-pointer'>Top</li>
                  </ul>
             </div>
-            <div className='feeds'>
+            <div className=' mx-0'>
              {allposts? allposts?.map((x)=>{
                return <Card key={x._id} post={x}/>
              }):<CircularProgress style={{color:"black"}}></CircularProgress>}    

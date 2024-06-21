@@ -17,13 +17,13 @@
     margin: 10px;
 }
 
-input[type=text]{
+/* input[type=text]{
     height: 30px;
-}
+} */
 
-input[type=password]{
+/* input[type=password]{
     height: 30px;
-}
+} */
 
 textarea{
     height: 100px;

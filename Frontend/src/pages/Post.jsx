@@ -7,7 +7,7 @@ import MenuList from '../components/MenuList';
 
 function Post(){
      
-    return <div className='Postpage'>
+    return <div className='Postpage min-h-screen'>
            <MainNavBar></MainNavBar>
            <div style={{display:"flex", overflowY:"scroll"}}>
               <Postform></Postform>

@@ -33,7 +33,6 @@ function App() {
     },[user]);
     
   return (
-    
         <Routes>
            <Route exact path="/" element={<Home/>}></Route>
            <Route exact path="/Login" element={!isLoggedin || !user?.userdata?.isEmailVerified?<LoginPage/>:<Navigate replace to="/Main"></Navigate>}></Route>
@@ -46,7 +45,6 @@ function App() {
            <Route path="/VerifyPage" element={<VerifyEmail/>}></Route>
            <Route path="*" element={<Pagenotfound/>}></Route>
         </Routes>
-
   );
 }
 

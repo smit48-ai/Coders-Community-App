@@ -1,5 +1,9 @@
 import axios from 'axios';
-const url="https://transfer-app-api.onrender.com/user";
+
+//for Dev
+const url="http://localhost:8900/user";
+//for Deploy
+// const url="https://transfer-app-api.onrender.com/user";
 
 
 

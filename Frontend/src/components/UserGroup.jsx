@@ -1,29 +1,29 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { TopFollowed } from '../Actions/user';
-import Usercard from '../components/usercard';
-import './Usergroup.css';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { TopFollowed } from "../Actions/user";
+import Usercard from "../components/usercard";
+import "./Usergroup.css";
 
 const UserGroup = () => {
-  const Topusers=useSelector((state)=>state.User.Topusers);
-  const dispatch=useDispatch();
-  useEffect(()=>{
+  const Topusers = useSelector((state) => state.User.Topusers);
+  const dispatch = useDispatch();
+  useEffect(() => {
     dispatch(TopFollowed());
-  },[dispatch]);
+  }, [dispatch]);
 
   return (
-    <div className='usergroup'>
-    <h2 className='TopFollow-heading' style={{margin:"70px auto 12px"}}>Top Followed Users</h2>
-     <div style={{display:"flex", flexWrap:"wrap", overflowY:"scroll", height:"70vh"}}>
-     {Topusers && Topusers.map((x)=>{
-        return <Usercard className="usercard" key={Topusers._id} user={x}/>
-    })
-   }
-   </div>
-  </div>
-   
-   
+    <div className=" bg-white min-w-fit max-lg:hidden mx-auto px-4 rounded-md ring-1 ring-gray-300 pt-4 h-fit">
+      <div className="font-Poppins text-xl text-center">Active users</div>
+      <ul className="divide-y divide-gray-100">
+        {Topusers &&
+          Topusers.map((x) => {
+            return (
+              <Usercard className="usercard" key={Topusers._id} user={x} />
+            );
+          })}
+      </ul>
+    </div>
   );
-}
+};
 
-export default UserGroup
+export default UserGroup;

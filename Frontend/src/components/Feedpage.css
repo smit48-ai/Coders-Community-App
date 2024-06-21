@@ -10,7 +10,7 @@
     flex-wrap: wrap;
 }
 .typesoffeed ul li{
-    margin: 0 10px;
+    margin: 0 0px;
     font-family: var(--font3);
     font-weight: 500;
     font-size: 1.5rem;

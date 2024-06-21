@@ -1,5 +1,8 @@
 import axios from 'axios';
-const url="https://transfer-app-api.onrender.com/auth";
+//for Dev
+const url="http://localhost:8900/auth";
+//for Deploy
+// const url="https://transfer-app-api.onrender.com/auth";
 
 export const signup = (data)=>axios.post(`${url}/register`, data)
 export const login = (data)=>axios.post(`${url}/Login`, data)

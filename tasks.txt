@@ -1,0 +1,7 @@
+1.Complete Frontend Desgin (Change ReadPost, Change MakePost, Change the Profile Page and Landing Page)
+2.Add functionality to new desgin using current state
+3.Learn Redux and TypeScript and contextAPI and React Router
+4.Check for statemangement
+5.Add the google and other sign in option with OTP for MFA
+6.Change the Backend Models for Compaitibility with multilevel comments, videos, notifiations,etc..
+7.Add search fuctionality --> posts,users,etc...
