@@ -1,13 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { register, login } from "../Actions/Auth";
-
-//mycss
-//import "./Login.css";
+import { useSearchParams } from "react-router-dom";
+import Spinner from "../components/Spinner";
 
 //material ui compontents
-import { CircularProgress } from "@mui/material";
+import GoogleSignIn from "../components/GoogleSignIn";
 
 function LoginPage() {
   //states
@@ -16,6 +15,7 @@ function LoginPage() {
   const [message, setmessage] = useState("");
   const [iserror, setiserror] = useState(false);
   const [isSubmitted, setisSubmitted] = useState(false);
+  const [matchMessage, setmatchMessage] = useState("");
   const user = useSelector((state) => state.User);
   const [formdata, setformdata] = useState({
     username: "",
@@ -26,15 +26,33 @@ function LoginPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [searchParams] = useSearchParams();
+  useEffect(() => {
+    console.log("navigation changed");
+
+    const token = searchParams.get("token");
+    console.log("token", token);
+
+    if (token) {
+      localStorage.setItem("profile", token);
+      // dispatch(getCurrentUser());
+      navigate("/Main");
+    }
+  }, [navigate, searchParams, dispatch]);
+
   //TODO: need to handle the navigation
   useEffect(() => {
     if (!user.fetching) {
       if (user.errors !== null) {
+        console.log("user.error", user.errors);
+
         setiserror(true);
         if (isLogin) {
           setmessage("Username or password is wrong");
         } else {
-          setmessage("Username already exists or email is invalid");
+          setmessage(
+            "user with given email already exists or username is taken"
+          );
         }
       } else {
         if (isSubmitted) {
@@ -56,6 +74,8 @@ function LoginPage() {
   //after submit
   function handlesubmit(e) {
     e.preventDefault();
+    console.log(e);
+
     if (isLogin || formdata.password === formdata.ConfirmPassword) {
       setisSubmitted(true);
       setiserror(false);
@@ -64,6 +84,8 @@ function LoginPage() {
       } else {
         dispatch(login(formdata));
       }
+    } else {
+      setmatchMessage("Password and confirm password does not match");
     }
   }
 
@@ -84,7 +106,6 @@ function LoginPage() {
     setisSubmitted(false);
   }
 
-
   //TODO: overflow when to much things in signup
   //TODO: in mobile view increase fonts ig
   //TODO: find good cirular component and make it centerd
@@ -93,10 +114,10 @@ function LoginPage() {
   const reftoLogin = useRef(0);
   const reftoSignup = useRef(0);
 
-  return (
+  return !searchParams.get("token") ? (
     <>
       <div className="flex min-h-screen sm:bg-gray-200 bg-white justify-center font-Poppins overflow-scroll max-sm:text-lg">
-        <div className="lg:min-w-96 sm:min-w-96 max-sm:w-full max-sm:min-h-screen sm:max-h-[581px] m-auto flex flex-col justify-center items-center shadow-md bg-white rounded px-6 py-12 lg:px-8 overflow-scroll">
+        <div className="lg:w-96 sm:min-w-96 max-sm:w-full max-sm:min-h-screen  m-auto flex flex-col justify-center items-center shadow-md bg-white rounded px-6 py-12 lg:px-8 overflow-scroll">
           <h2 className="font-Poppins text-2xl max-sm:text-3xl">Transfer</h2>
           <nav
             onClick={toggle}
@@ -138,9 +159,9 @@ function LoginPage() {
               value={formdata.username}
               name="username"
               type="text"
-              className="my-1.5 block w-full font-Poppins rounded-md border-0 px-1.5 py-1.5  text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 placeholder:font-Poppins focus:ring-2 focus:ring-inset focus:ring-neutral-900 sm:text-sm sm:leading-6"
+              className="my-1.5 block w-full font-Poppins rounded-md border-0 px-1.5 py-1.5  text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 placeholder:font-Poppins focus:ring-2 focus:ring-inset focus:ring-neutral-900 text-sm leading-6"
               required={true}
-              placeholder="Enter Your Username"
+              placeholder="Enter your username"
               onChange={handlechange}
             ></input>
             {!isLogin && (
@@ -155,7 +176,7 @@ function LoginPage() {
                   value={formdata.emailid}
                   name="emailid"
                   type="email"
-                  className="my-1.5 block w-full rounded-md border-0 px-1.5 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 placeholder:font-Poppins focus:ring-2 focus:ring-inset focus:ring-neutral-900 sm:text-sm sm:leading-6"
+                  className="my-1.5 block w-full rounded-md border-0 px-1.5 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 placeholder:font-Poppins focus:ring-2 focus:ring-inset focus:ring-neutral-900 text-sm leading-6"
                   placeholder="emailId"
                   required={true}
                   onChange={handlechange}
@@ -172,8 +193,8 @@ function LoginPage() {
               value={formdata.password}
               name="password"
               type="password"
-              className="my-1.5 block w-full rounded-md border-0 px-1.5 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 placeholder:font-Poppins focus:ring-2 focus:ring-inset focus:ring-neutral-900 sm:text-sm sm:leading-6"
-              placeholder="Password"
+              className="my-1.5 block w-full rounded-md border-0 px-1.5 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 placeholder:font-Poppins focus:ring-2 focus:ring-inset focus:ring-neutral-900 text-sm leading-6"
+              placeholder="Enter your password"
               required={true}
               onChange={handlechange}
             ></input>
@@ -190,36 +211,33 @@ function LoginPage() {
                   name="ConfirmPassword"
                   type="password"
                   required={true}
-                  className="my-1.5 block w-full rounded-md border-0 px-1.5 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400  placeholder:font-Poppins focus:ring-2 focus:ring-inset focus:ring-neutral-900 sm:text-sm sm:leading-6"
-                  placeholder="Confirm Password"
+                  className="my-1.5 block w-full rounded-md border-0 px-1.5 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400  placeholder:font-Poppins focus:ring-2 focus:ring-inset focus:ring-neutral-900 text-sm leading-6"
+                  placeholder="Confirm your password"
                   onChange={handlechange}
                 ></input>
               </>
             )}
-            {/* <div style={{ display: "flex", gap: "10px" }}>
-            <input type="checkbox" id="remeber"></input>
-            <label htmlFor="remeber">remeber me</label>
-          </div> */}
-            {!isLogin && formdata.ConfirmPassword !== formdata.password && (
-              <span className="text-orange-400 text-center mt-4">
-                Passwords Does not match
-              </span>
+            {!isLogin && matchMessage !== "" && (
+              <div className="mt-2 px-4 py-3 border border-red-500 bg-red-500/10 text-red-600 rounded-md shadow-sm animate-fade-in">
+                <p className="text-sm font-medium">{matchMessage}</p>
+              </div>
             )}
             {isSubmitted &&
-              (user.fetching || iserror ? (
-                <div
-                  class="m-12 text-center flex justify-center h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
-                  role="status"
-                >
-                  <span class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
-                    Loading...
-                  </span>
+              (user.fetching ? (
+                <div className="flex justify-center items-center py-10 gap-3">
+                  <div
+                    className="w-10 h-10 border-4 border-black border-t-transparent rounded-full animate-spin"
+                    role="status"
+                  >
+                    <span className="sr-only">Loading...</span>
+                  </div>
+                  <span> Letting you in..</span>
                 </div>
               ) : (
                 iserror && (
-                  <span className="text-orange-400 text-center mt-4">
-                    {message}
-                  </span>
+                  <div className="mt-2 px-4 py-3 border border-red-500 bg-red-500/10 text-red-600 rounded-md shadow-sm animate-fade-in">
+                    <p className="text-sm font-medium">{message}</p>
+                  </div>
                 )
               ))}
             {!isSubmitted && (
@@ -231,12 +249,17 @@ function LoginPage() {
               </button>
             )}
           </form>
-          {/* //TODO: add login with google and all */}
-          {/* <h3 style={{margin:"0"}}>or</h3>
-        <h3 style={{margin:"0"}}>Login With</h3>   */}
+          <div className="flex items-center w-full my-5 ">
+            <hr className="flex-grow border-t border-gray-300" />
+            <span className="mx-4 text-gray-500 font-medium">OR</span>
+            <hr className="flex-grow border-t border-gray-300" />
+          </div>
+          <GoogleSignIn />
         </div>
       </div>
     </>
+  ) : (
+    <Spinner />
   );
 }
 export default LoginPage;

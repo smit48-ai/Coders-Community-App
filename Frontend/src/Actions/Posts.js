@@ -4,6 +4,7 @@ import * as upload_api from '../API/upload.js';
 export const getPosts = function(){
     return async function(dispatch){
         try{ 
+            // to get live posts made by users
              const {data} = await api.fetchPosts();
              dispatch({type:'FETCH_ALL', payload: data});
         }

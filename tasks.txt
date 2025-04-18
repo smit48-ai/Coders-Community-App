@@ -5,3 +5,16 @@
 5.Add the google and other sign in option with OTP for MFA
 6.Change the Backend Models for Compaitibility with multilevel comments, videos, notifiations,etc..
 7.Add search fuctionality --> posts,users,etc...
+change the page names suitably
+First publish the website
+8.Gen AI in Posts Content and Cover pictures
+9.Add notifications functionality and mail if followed user has posted anything
+
+
+
+1. Complete Profile Page and Make Post Page
+2. Change the comment thing in Read Post page
+3. Handle the saved list Page
+3.5 change the Page Loader
+4. Change the Navbar for adding the notification and logout
+5. Handle the Hamburger menu properly ( Add Animations etc...)

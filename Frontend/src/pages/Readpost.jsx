@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import MainNavBar from "../components/MainNavbar";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../API/user";
 import { getPosts } from "../Actions/Posts";
@@ -14,21 +13,13 @@ import {
 import { deletePost } from "../Actions/Posts";
 import { Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
-//css
-import "./Readpost.css";
 
 //material ui compontents
-import { CircularProgress } from "@mui/material";
-import { Avatar } from "@mui/material";
-import { Button } from "@mui/material";
-import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
-import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import DeleteIcon from "@mui/icons-material/Delete";
-import TextareaAutosize from "@mui/base/TextareaAutosize";
-import MenuList from "../components/MenuList";
 import { AddComment } from "../API/posts";
 import Markdownrender from "../components/Markdownrender";
 import Footer from "../components/Footer";
+import { TrashIcon } from "@heroicons/react/outline";
 
 //fontAwesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -41,6 +32,8 @@ import {
   faHeart as faHeartFilled,
   faBookmark as faBookmarkFilled,
 } from "@fortawesome/free-solid-svg-icons";
+import Spinner from "../components/Spinner";
+import SimpleNavBar from "../components/SimpleNavBar";
 
 function Readpost() {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -88,6 +81,11 @@ function Readpost() {
     setliked(newstate);
   }, [post]);
 
+  useEffect(() => {
+    const newstate = post?.Saves.includes(Currentuser?._id) ? true : false;
+    setsaved(newstate);
+  }, [post]);
+
   //TODO: manage in reducer ig
   useEffect(() => {
     async function getUserData() {
@@ -131,47 +129,93 @@ function Readpost() {
 
   return post && authoruser ? (
     <>
-      <MainNavBar></MainNavBar>
-      <div className="flex flex-row max-lg:flex-col max-lg:justify-center min-h-screen bg-slate-200 mt-10 pt-10 lg:pl-16 lg:pr-10">
-        <div className="flex flex-col max-lg:flex-row pt-10 m-3 text-2xl font-Poppins items-center gap-4">
-          <div className="flex flex-col items-center">
-            {isliked ? (
-              <FontAwesomeIcon
-                icon={faHeartFilled}
-                className="transition-all duration-300 text-pink-500"
-                onClick={likethearticle}
-              />
-            ) : (
-              <FontAwesomeIcon
-                icon={faHeart}
-                className="transition-all duration-300 text-pink-500"
-                onClick={likethearticle}
-              />
-            )}
-            <span className="text-xl">{post.Likes.length}</span>
-          </div>
-          <div className="flex flex-col items-center">
-            {isSaved ? (
-              <FontAwesomeIcon
-                icon={faBookmarkFilled}
-                className="transition-all duration-300"
-                onClick={savethearticle}
-              />
-            ) : (
-              <FontAwesomeIcon
-                icon={faBookmark}
-                className="transition-all duration-300"
-                onClick={savethearticle}
-              />
-            )}
-            <span className="text-xl">{post.Saves.length}</span>
-          </div>
-          <div className="flex flex-col items-center">
-            <FontAwesomeIcon icon={faComments} className="text-orange-500" />
-            <span className="text-xl">{post.comments.length}</span>
+      <SimpleNavBar location={"Read Post"} />
+      <div className="flex flex-row max-lg:flex-col max-lg:justify-center min-h-screen bg-slate-200 lg:pl-16 lg:pr-10">
+        <div className="hidden lg:block">
+          <div className="flex flex-col lg:pt-10 lg:m-3 text-2xl font-Poppins items-center gap-4">
+            <div className="flex flex-col items-center">
+              {isliked ? (
+                <FontAwesomeIcon
+                  icon={faHeartFilled}
+                  className="transition-all duration-300 text-pink-500"
+                  onClick={likethearticle}
+                />
+              ) : (
+                <FontAwesomeIcon
+                  icon={faHeart}
+                  className="transition-all duration-300 text-pink-500"
+                  onClick={likethearticle}
+                />
+              )}
+              <span className="text-xl">{post.Likes.length}</span>
+            </div>
+            <div className="flex flex-col items-center">
+              {isSaved ? (
+                <FontAwesomeIcon
+                  icon={faBookmarkFilled}
+                  className="transition-all duration-300"
+                  onClick={savethearticle}
+                />
+              ) : (
+                <FontAwesomeIcon
+                  icon={faBookmark}
+                  className="transition-all duration-300"
+                  onClick={savethearticle}
+                />
+              )}
+              <span className="text-xl">{post.Saves.length}</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <FontAwesomeIcon icon={faComments} className="text-orange-500" />
+              <span className="text-xl">{post.comments.length}</span>
+            </div>
           </div>
         </div>
-        <div className="flex flex-col bg-white mt-10 mb-10 rounded-md max-md:w-screen box-border w-[700px] lg:ml-3 lg:mr-3 ring-1 ring-gray-300 ">
+
+        <div className="flex flex-col bg-white lg:mt-10 lg:mb-10  lg:rounded-md max-md:w-screen box-border w-[1000px] lg:ml-3 lg:mr-3 ring-1 ring-gray-300 ">
+          <div className="block lg:hidden">
+            <div className="flex mt-5 mb-3 mr-3 ml-3 text-1xl font-Poppins items-center gap-4 justify-end">
+              <div className="flex flex-col items-center">
+                {isliked ? (
+                  <FontAwesomeIcon
+                    icon={faHeartFilled}
+                    className="transition-all duration-300 text-pink-500"
+                    onClick={likethearticle}
+                  />
+                ) : (
+                  <FontAwesomeIcon
+                    icon={faHeart}
+                    className="transition-all duration-300 text-pink-500"
+                    onClick={likethearticle}
+                  />
+                )}
+                <span className="text-xl">{post.Likes.length}</span>
+              </div>
+              <div className="flex flex-col items-center">
+                {isSaved ? (
+                  <FontAwesomeIcon
+                    icon={faBookmarkFilled}
+                    className="transition-all duration-300"
+                    onClick={savethearticle}
+                  />
+                ) : (
+                  <FontAwesomeIcon
+                    icon={faBookmark}
+                    className="transition-all duration-300"
+                    onClick={savethearticle}
+                  />
+                )}
+                <span className="text-xl">{post.Saves.length}</span>
+              </div>
+              <div className="flex flex-col items-center">
+                <FontAwesomeIcon
+                  icon={faComments}
+                  className="text-orange-500"
+                />
+                <span className="text-xl">{post.comments.length}</span>
+              </div>
+            </div>
+          </div>
           {post?.CoverImage && (
             <img
               className="object-contain max-md:rounded-md max-md:rounded-b-none"
@@ -181,64 +225,44 @@ function Readpost() {
           )}
           <div className="p-3">
             <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <h1 className="font-Poppins text-6xl">{post?.Title}</h1>
+              <h1 className="font-Poppins text-6xl max-sm:text-3xl">
+                {post?.Title}
+              </h1>
               <div style={{ display: "flex", alignItems: "center" }}>
-                {/* {isliked ? (
-                <ThumbUpIcon
-                  style={{ cursor: "pointer" }}
-                  className="icons"
-                  fontSize="large"
-                  onClick={likethearticle}
-                ></ThumbUpIcon>
-              ) : (
-                <ThumbUpOffAltIcon
-                  style={{ cursor: "pointer" }}
-                  fontSize="large"
-                  className="icons"
-                  onClick={likethearticle}
-                ></ThumbUpOffAltIcon>
-              )}
-              <a
-                href=" "
-                style={{
-                  textDecoration: "none",
-                  color: "black",
-                  fontSize: "1.2rem",
-                }}
-              >
-                {post?.Likes.length}
-              </a> */}
                 {Currentuser?._id === authoruser?._id && (
                   <div style={{ display: "flex", alignItems: "end" }}>
-                    <DeleteIcon
-                      fontSize="large"
-                      style={{ color: "black", cursor: "pointer" }}
+                    <TrashIcon
+                      className="h-6 w-6 text-red-500 md:h-10 md:w-10 cursor-pointer"
                       onClick={() => {
                         dispatch(deletePost(post?._id));
                         navigate("/main");
                       }}
-                    ></DeleteIcon>
-                    {/* <Button variant="contained" style={{backgroundColor:"black", height:"fit-content"}}>edit</Button> */}
+                    ></TrashIcon>
                   </div>
                 )}
               </div>
             </div>
-
-            <div className="mt-2 mb-4 w-10 h-10 overflow-hidden border-2 border-gray-400 rounded-full mr-2 p-0">
-              <Link to={`/Profile/${authoruser._id}`}>
-                <img
-                  src={
-                    authoruser?.ProfilePicture
-                      ? PF + authoruser.ProfilePicture
-                      : PF + "dummy-profile-pic.png"
-                  }
-                ></img>
-              </Link>
-              <div>
-                <Link to={`/Profile/${authoruser._id}`} className="font-Poppins ">
-                  <a href="">
-                    <b>By</b> {authoruser?.username}
-                  </a>
+            <div className="flex items-center mt-4 mb-4">
+              <div className="w-10 h-10 overflow-hidden border-2 border-gray-400 rounded-full mr-2 p-0">
+                <Link to={`/Profile/${authoruser._id}`}>
+                  <img
+                    src={
+                      authoruser?.ProfilePicture
+                        ? authoruser.ProfilePicture.startsWith("https")
+                          ? authoruser.ProfilePicture
+                          : PF + authoruser.ProfilePicture
+                        : PF + "dummy-profile-pic.png"
+                    }
+                    alt="profile"
+                  ></img>
+                </Link>
+              </div>
+              <div className="font-Poppins text-sm flex flex-col ml-2">
+                <Link
+                  to={`/Profile/${authoruser._id}`}
+                  className="font-Poppins text-black"
+                >
+                  <b>By</b> {authoruser?.username}
                 </Link>
                 <div>
                   {
@@ -251,6 +275,7 @@ function Readpost() {
                 </div>
               </div>
             </div>
+
             <div>
               {post.Tags.map((tag) => {
                 return (
@@ -268,107 +293,43 @@ function Readpost() {
             </div>
             <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
 
-            <div className="w-full rounded-lg md:p-3">
-              <h3 className="font-semibold font-Poppins text-xl p-1">Discussion</h3>
-              <div className="flex flex-col gap-5 m-3">
-                <div>
-                  <div className="flex w-full justify-between">
-                    <div className="p-3 ">
-                      <div className="flex gap-3 items-center">
-                        <img
-                          src="https://avatars.githubusercontent.com/u/22263436?v=4"
-                          className="object-cover w-10 h-10 rounded-full border-2 border-emerald-400  shadow-emerald-400"
-                        />
-                        <h3 className="font-bold font-Poppins">
-                          User 1
-                          <br />
-                          <span className="text-sm text-gray-400">
-                            Level 1
-                          </span>
-                        </h3>
-                      </div>
-                      <p className="text-gray-600 mt-2">
-                        this is sample commnent
-                      </p>
-                     
-                    </div>
-                   
-                  </div>
-                  {/* Reply Container  */}
-                  <div className="text-gray-300 font-bold pl-14"></div>
-                  <div className="flex justify-between border ml-5  rounded-md">
-                    <div className="p-3">
-                      <div className="flex gap-3 items-center">
-                        <img
-                          src="https://avatars.githubusercontent.com/u/22263436?v=4"
-                          className="object-cover w-10 h-10 rounded-full border-2 border-emerald-400  shadow-emerald-400"
-                        />
-                        <h3 className="font-bold">
-                          User 2
-                          <br />
-                          <span className="text-sm text-gray-400 font-normal">
-                            Level 1
-                          </span>
-                        </h3>
-                      </div>
-                      <p className="text-gray-600 mt-2">
-                        this is sample commnent
-                      </p>
-                    </div>
-                    {/* <div className="flex flex-col gap-3 pr-3 py-3">
-                      <div>
-                        <svg
-                          className="w-6 h-6 text-gray-600"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          strokeWidth={5}
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M4.5 15.75l7.5-7.5 7.5 7.5"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <svg
-                          className="w-6 h-6 text-gray-600"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          strokeWidth={5}
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-                          />
-                        </svg>
-                      </div>
-                    </div> */}
-                  </div>
-                  {/* END Reply Container  */}
-                 
-                </div>
-                {/* END Comment Container  */}
+            <div
+              className="w-full rounded-lg md:p-3 bg-gray-100  shadow-lg border border-gray-200  rounded-md p-4 my-6"
+              style={{
+                boxShadow: "inset 0 1px 6px rgba(0, 0, 0, 0.05)",
+              }}
+            >
+              <h3 className="font-semibold font-Poppins text-xl p-1">
+                Discussion
+              </h3>
+              <div className="flex flex-col gap-5 m-3 font-Poppins ">
+                {post.comments.map((data) => {
+                  return <Comment details={data}></Comment>;
+                })}
               </div>
-              <div className="w-full px-3 mb-2 mt-6">
+              <div className="w-full px-3 mb-2 mt-6 font-Poppins">
                 <textarea
                   className="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-400 focus:outline-none focus:bg-white"
                   name="body"
                   placeholder="Comment"
                   required=""
                   defaultValue={""}
+                  ref={reftocomment}
+                  value={NewComment}
+                  onChange={(e) => {
+                    setNewComment(e.target.value);
+                  }}
                 />
               </div>
-              <div className="w-full flex justify-end px-3 my-3">
+              <div className="w-full flex justify-end px-3 my-3 font-Poppins">
                 <input
                   type="submit"
                   className="px-2.5 py-1.5 rounded-md text-white text-sm bg-black text-lg  hover:bg-gray-700 hover:pointer"
                   defaultValue="Post Comment"
+                  onClick={() => {
+                    handleAddcomment();
+                    setNewComment("");
+                  }}
                 />
               </div>
             </div>
@@ -397,10 +358,7 @@ function Readpost() {
                     color: "white",
                     margin: "10px",
                   }}
-                  onClick={() => {
-                    handleAddcomment();
-                    setNewComment("");
-                  }}
+                 
                 >
                   Add comment
                 </Button>
@@ -412,11 +370,10 @@ function Readpost() {
           </div>
         </div>
       </div>
-
       <Footer />
     </>
   ) : (
-    <CircularProgress className="flex h-screen w-screen justify-center align-middle text-black"></CircularProgress>
+    <Spinner />
   );
 }
 

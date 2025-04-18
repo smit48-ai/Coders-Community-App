@@ -8,8 +8,8 @@ import {
   unlikethePost,
   savethePost,
   unsavethePost,
-  deletePost,
 } from "../Actions/Posts";
+
 //css
 import "./Card.css";
 
@@ -24,15 +24,6 @@ import {
   faHeart as faHeartFilled,
   faBookmark as faBookmarkFilled,
 } from "@fortawesome/free-solid-svg-icons";
-
-//material ui
-import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
-import CommentIcon from "@mui/icons-material/Comment";
-import BookmarkIcon from "@mui/icons-material/Bookmark";
-import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
-import ThumbUpIcon from "@mui/icons-material/ThumbUp";
-import DeleteIcon from "@mui/icons-material/Delete";
-import Button from "@mui/material/Button";
 
 function Card(props) {
   const monthNames = [
@@ -82,7 +73,6 @@ function Card(props) {
   }
 
   //  write a program to handle button click
-
   useEffect(() => {
     async function getUserData() {
       const userData = await getUser(props.post.Author);
@@ -92,8 +82,8 @@ function Card(props) {
   }, [props]);
 
   return (
-    <Link to={`/ReadPost/${props.post._id}`}>
-      <div className="sm:rounded-md ring-1 ring-gray-300 bg-white max-w-[600px] max-sm:w-screen w-[600px] font-Poppins mb-3">
+    <div className="sm:rounded-md ring-1 ring-gray-300 bg-white max-w-[700px] max-sm:w-screen w-[700px] font-Poppins mb-3">
+      <Link to={`/ReadPost/${props.post._id}`}>
         {props.post.CoverImage && (
           <img
             src={PF + props.post.CoverImage}
@@ -101,101 +91,90 @@ function Card(props) {
             alt="Cover"
           ></img>
         )}
-        <div className="p-2.5">
-          <h1
-            className="mb-3 font-Poppins text-[2.5rem] text-wrap"
-            onClick={() => {
-              navigate(`/ReadPost/${props.post._id}`);
-            }}
-          >
-            {props?.post.Title}
-          </h1>
+      </Link>
+      <div className="p-2.5">
+        <h1
+          className="mb-3 font-Poppins text-[2.5rem] text-wrap"
+          onClick={() => {
+            navigate(`/ReadPost/${props.post._id}`);
+          }}
+        >
+          {props?.post.Title}
+        </h1>
 
-          <div className="flex items-center justify-between">
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <Link to={`/Profile/${authoruser?._id}`}>
-                <div className="w-10 h-10 overflow-hidden border-2 border-gray-400 rounded-full mr-2 p-0">
-                  <img
-                    src={
-                      authoruser.ProfilePicture
-                        ? PF + authoruser.ProfilePicture
-                        : PF + "dummy-profile-pic.png"
-                    }
-                    alt="Profile-Pic"
-                    className="w-full h-full rounded-full"
-                  />
-                </div>
-              </Link>
+        <div className="flex items-center justify-between">
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <Link to={`/Profile/${authoruser?._id}`}>
+              <div className="w-10 h-10 overflow-hidden border-2 border-gray-400 rounded-full mr-2 p-0">
+                <img
+                  src={
+                    authoruser.ProfilePicture
+                      ? authoruser.ProfilePicture.startsWith("https")
+                        ? authoruser.ProfilePicture
+                        : PF + authoruser.ProfilePicture
+                      : PF + "dummy-profile-pic.png"
+                  }
+                  alt="Profile-Pic"
+                  className="w-full h-full rounded-full"
+                />
+              </div>
+            </Link>
+            <div>
+              <a href="">
+                <Link to={`/Profile/${authoruser?._id}`}>
+                  By {authoruser.username}
+                </Link>
+              </a>
               <div>
-                <a href="">
-                  <Link to={`/Profile/${authoruser?._id}`}>
-                    By {authoruser.username}
-                  </Link>
-                </a>
-                <div>
-                  {monthNames[date.getMonth()]} {date.getDate()},{" "}
-                  {date.getFullYear()}
-                </div>
+                {monthNames[date.getMonth()]} {date.getDate()},{" "}
+                {date.getFullYear()}
               </div>
             </div>
-
-            {currentuser?._id === authoruser?._id && (
-              <div style={{ display: "flex", alignItems: "end" }}>
-                {/* <DeleteIcon
-                fontSize="large"
-                style={{ color: "black", cursor: "pointer" }}
-                onClick={() => {
-                  dispatch(deletePost(props.post._id));
-                }}
-              ></DeleteIcon> */}
-                {/* <Button variant="contained" style={{backgroundColor:"black", height:"fit-content"}}>edit</Button> */}
-              </div>
-            )}
-          </div>
-          <div className="Tags">
-            {props.post.Tags.map((tag) => {
-              return <a href=" ">{tag}</a>;
-            })}
-          </div>
-          <div className="flex justify-between">
-            <div className="flex gap-1 items-center">
-              {isliked ? (
-                <FontAwesomeIcon
-                  icon={faHeartFilled}
-                  className="transition-all duration-300 text-pink-500"
-                  onClick={likethearticle}
-                />
-              ) : (
-                <FontAwesomeIcon
-                  icon={faHeart}
-                  className="transition-all duration-300 text-pink-500"
-                  onClick={likethearticle}
-                />
-              )}
-              <span className="w-[10px]">{props.post.Likes.length}</span>
-              <span className="mr-3"> likes</span>
-              <FontAwesomeIcon icon={faComments} className="text-orange-500" />
-              <span>{props.post.comments.length} comments</span>
-            </div>
-            <span>
-              {isSaved ? (
-                <FontAwesomeIcon
-                  icon={faBookmarkFilled}
-                  className="transition-all duration-300"
-                  onClick={savethearticle}
-                />
-              ) : (
-                <FontAwesomeIcon
-                  icon={faBookmark}
-                  className="transition-all duration-300"
-                  onClick={savethearticle}
-                />
-              )}
-            </span>
           </div>
         </div>
+        <div className="Tags">
+          {props.post.Tags.map((tag) => {
+            return <a href=" ">{tag}</a>;
+          })}
+        </div>
+        <div className="flex justify-between">
+          <div className="flex gap-1 items-center">
+            {isliked ? (
+              <FontAwesomeIcon
+                icon={faHeartFilled}
+                className="transition-all duration-300 text-pink-500"
+                onClick={likethearticle}
+              />
+            ) : (
+              <FontAwesomeIcon
+                icon={faHeart}
+                className="transition-all duration-300 text-pink-500"
+                onClick={likethearticle}
+              />
+            )}
+            <span className="w-[10px]">{props.post.Likes.length}</span>
+            <span className="mr-3"> likes</span>
+            <FontAwesomeIcon icon={faComments} className="text-orange-500" />
+            <span>{props.post.comments.length} comments</span>
+          </div>
+          <span>
+            {isSaved ? (
+              <FontAwesomeIcon
+                icon={faBookmarkFilled}
+                className="transition-all duration-300"
+                onClick={savethearticle}
+              />
+            ) : (
+              <FontAwesomeIcon
+                icon={faBookmark}
+                className="transition-all duration-300"
+                onClick={savethearticle}
+              />
+            )}
+          </span>
+        </div>
       </div>
-    </Link>
+    </div>
   );
 }
 export default Card;

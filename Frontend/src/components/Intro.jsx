@@ -1,12 +1,6 @@
 import React from "react";
-import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 import { Link } from "react-router-dom";
 import hero from "../assests/hero.png";
-import "./Intro.css";
-
-function tomain() {
-  document.querySelectorAll("homescreen")[0].style.color = "black";
-}
 
 function Intro(props) {
   return (
@@ -23,7 +17,7 @@ function Intro(props) {
           updated with the latest trends in technology.
         </div>
         <Link to="/Login" className="m-2">
-          <button className="bg-blue-700 rounded-md p-4 text-white text-2xl">
+          <button className="bg-blue-700 rounded-md p-3 text-white text-2xl mt-3 hover:bg-blue-500">
             Join Us
           </button>
         </Link>
@@ -31,7 +25,6 @@ function Intro(props) {
       <div className="">
         <img src={hero}></img>
       </div>
-      {/* <span onClick={tomain}><a href="/Main"><KeyboardDoubleArrowDownIcon fontSize="large"></KeyboardDoubleArrowDownIcon></a></span> */}
     </div>
   );
 }

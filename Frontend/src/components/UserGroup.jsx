@@ -1,20 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { TopFollowed } from "../Actions/user";
-import Usercard from "../components/usercard";
-import "./Usergroup.css";
+import React from "react";
+import Usercard from "./usercard";
 
-const UserGroup = () => {
-  const Topusers = useSelector((state) => state.User.Topusers);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(TopFollowed());
-  }, [dispatch]);
-
+const UserGroup = ({ Topusers, title }) => {
   return (
-    <div className=" bg-white min-w-fit max-lg:hidden mx-auto px-4 rounded-md ring-1 ring-gray-300 pt-4 h-fit">
-      <div className="font-Poppins text-xl text-center">Active users</div>
-      <ul className="divide-y divide-gray-100">
+    <div className=" bg-white mx-auto px-4 lg:rounded-md ring-1 ring-gray-300 pt-4 h-fit w-[20vw] max-lg:w-full max-lg:my-3">
+      <div className="font-Poppins text-xl text-left">{title}</div>
+      {Topusers.length === 0 && (
+        <div className="flex justify-center items-center h-32 text-gray-500 font-Poppins text-lg">
+          No Users Found
+        </div>
+      )}
+      <ul className="divide-y divide-gray-100 overflow-scroll">
         {Topusers &&
           Topusers.map((x) => {
             return (

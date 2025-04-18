@@ -1,9 +1,0 @@
-.Saves-container{
-    margin:0px 30px;
-}
-
-@media (max-width:450px) {
-    .Saves-container{
-        margin:0 10px;
-    }
-}

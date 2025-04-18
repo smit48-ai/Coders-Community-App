@@ -1,7 +1,7 @@
-import { setAnimation } from "@material-tailwind/react/components/Tabs/TabsContext";
+// import { setAnimation } from "@material-tailwind/react/components/Tabs/TabsContext";
 import React, { useEffect, useState } from "react";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
-import { RxDotFilled } from "react-icons/rx";
+// import { RxDotFilled } from "react-icons/rx";
 
 function Carousel() {
   const slides = [
@@ -32,16 +32,16 @@ function Carousel() {
     setCurrentIndex(newIndex);
   };
 
-  useEffect(()=>{
-   const timer = setInterval(()=>{
-    if(!mouseOver)
-    setCurrentIndex((currentIndex)=>(currentIndex+1)%slides.length);
-   },1000)
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (!mouseOver)
+        setCurrentIndex((currentIndex) => (currentIndex + 1) % slides.length);
+    }, 1000);
 
-   return ()=>{
-    clearInterval(timer);
-   }
-  },[mouseOver])
+    return () => {
+      clearInterval(timer);
+    };
+  }, [mouseOver]);
 
   const nextSlide = () => {
     const isLastSlide = currentIndex === slides.length - 1;
@@ -57,10 +57,10 @@ function Carousel() {
     <div className="h-full m-auto py-16 px-4 group w-full relative rounded-md">
       <div
         className="flex h-full w-full overflow-scroll"
-        onMouseEnter={()=>{
+        onMouseEnter={() => {
           setmouseOver(true);
         }}
-        onMouseLeave={()=>{
+        onMouseLeave={() => {
           setmouseOver(false);
         }}
       >
@@ -68,7 +68,7 @@ function Carousel() {
           <img
             key={index}
             src={image.url}
-            alt={`${index + 1}`}  
+            alt={`${index + 1}`}
             className="h-full w-full object-cover transition-transform duration-500 ease-in-out transform"
             style={{
               transform: `translateX(-${currentIndex * 100}%)`,
