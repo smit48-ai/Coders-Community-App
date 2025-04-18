@@ -28,7 +28,7 @@ router.get(
     console.log(req.user);
     var user = null;
     const existingUser = await Usermodel.findOne({
-      email: req.user.emailid,
+      emailid: req.user.emailid,
     });
     if (existingUser) {
       existingUser.googleId = req.user.googleId;
