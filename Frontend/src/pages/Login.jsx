@@ -50,9 +50,7 @@ function LoginPage() {
         if (isLogin) {
           setmessage("Username or password is wrong");
         } else {
-          setmessage(
-            "user with given email already exists or username is taken"
-          );
+          setmessage("user with given email already exists");
         }
       } else {
         if (isSubmitted) {
@@ -149,6 +147,8 @@ function LoginPage() {
             className="flex flex-col mt-10 w-full"
             onSubmit={handlesubmit}
           >
+               {!isLogin && (
+                <>
             <label
               for="username"
               class="block text-sm font-lg font-Poppins leading-6 text-gray-900"
@@ -163,8 +163,8 @@ function LoginPage() {
               required={true}
               placeholder="Enter your username"
               onChange={handlechange}
-            ></input>
-            {!isLogin && (
+            ></input></>)}
+         
               <>
                 <label
                   for="emailId"
@@ -182,7 +182,7 @@ function LoginPage() {
                   onChange={handlechange}
                 ></input>
               </>
-            )}
+            
             <label
               for="password"
               class="block text-sm font-medium font-Poppins leading-6 text-gray-900"

@@ -16,11 +16,9 @@ const UserProfileSchema = new mongoose.Schema(
     username: {
       type: String,
       required: true,
-      unique: true,
     },
     Password: {
       type: String,
-      unique: true,
     },
     Followers: [],
     Following: [],

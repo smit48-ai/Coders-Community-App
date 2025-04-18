@@ -40,7 +40,7 @@ router.get(
     } else {
       const newUser = new Usermodel({
         googleId: req.user.googleId,
-        email: req.user.emailid,
+        emailid: req.user.emailid,
         username: req.user.username,
         ProfilePicture: req.user.ProfilePicture.value,
         isEmailVerified: true,
@@ -79,7 +79,7 @@ router.post("/register", async (req, res) => {
 //<----------------------------------------Login----------------------------------->
 router.post("/Login", async (req, res) => {
   try {
-    const user = await Usermodel.findOne({ username: req.body.username });
+    const user = await Usermodel.findOne({ emailid: req.body.emailid });
     if (user) {
       const match = await bcrypt.compare(req.body.password, user.Password);
       if (match) {

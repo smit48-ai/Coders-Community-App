@@ -22,7 +22,7 @@ export const login = function (formdata) {
   return async (dispatch) => {
     try {
       const result = await api.login(formdata);
-      dispatch({ type: "LOGIN", payload: result.data });
+      dispatch({ type: "LOGIN", payload: result.data }); 
     } catch (err) {
       dispatch({ type: "LOGINFALIURE", payload: "" });
       console.log(err);
