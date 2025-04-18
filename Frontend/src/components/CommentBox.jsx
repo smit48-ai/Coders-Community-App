@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getUser } from "../API/user";
 import { Link } from "react-router-dom";
 
-export default Comment = (props) => {
+const CommentBox = (props) => {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [CommentAuthor, SetCommentAuthor] = useState(null);
 
@@ -45,3 +45,5 @@ export default Comment = (props) => {
     </>
   );
 };
+
+export default CommentBox;

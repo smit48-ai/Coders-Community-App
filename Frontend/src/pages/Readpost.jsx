@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../API/user";
 import { getPosts } from "../Actions/Posts";
-import Comment from "../components/Comment";
+import CommentBox from "../components/CommentBox";
 import {
   likethePost,
   unlikethePost,
@@ -292,7 +292,7 @@ function Readpost() {
               </h3>
               <div className="flex flex-col gap-5 m-3 font-Poppins ">
                 {post.comments.map((data) => {
-                  return <Comment details={data}></Comment>;
+                  return <CommentBox details={data}></CommentBox>;
                 })}
               </div>
               <div className="w-full px-3 mb-2 mt-6 font-Poppins">
@@ -321,40 +321,6 @@ function Readpost() {
                 />
               </div>
             </div>
-
-            {/* <div className="CommentPart">
-              <h2>Discussion</h2>
-              <form className="makecomment">
-                <Link to={`/Profile/${authoruser._id}`}>
-                  <Avatar src={PF + Currentuser?.ProfilePicture}></Avatar>
-                </Link>
-                <TextareaAutosize
-                  ref={reftocomment}
-                  value={NewComment}
-                  style={{ flex: 7, height: "40px" }}
-                  onChange={(e) => {
-                    setNewComment(e.target.value);
-                  }}
-                ></TextareaAutosize>
-              </form>
-              <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                <Button
-                  variant="contained"
-                  size="small"
-                  style={{
-                    background: "black",
-                    color: "white",
-                    margin: "10px",
-                  }}
-                 
-                >
-                  Add comment
-                </Button>
-              </div>
-              {post.comments.map((data) => {
-                return <Comment details={data}></Comment>;
-              })}
-            </div> */}
           </div>
         </div>
       </div>
