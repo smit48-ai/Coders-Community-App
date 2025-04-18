@@ -147,42 +147,44 @@ function LoginPage() {
             className="flex flex-col mt-10 w-full"
             onSubmit={handlesubmit}
           >
-               {!isLogin && (
-                <>
-            <label
-              for="username"
-              class="block text-sm font-lg font-Poppins leading-6 text-gray-900"
-            >
-              Username
-            </label>
-            <input
-              value={formdata.username}
-              name="username"
-              type="text"
-              className="my-1.5 block w-full font-Poppins rounded-md border-0 px-1.5 py-1.5  text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 placeholder:font-Poppins focus:ring-2 focus:ring-inset focus:ring-neutral-900 text-sm leading-6"
-              required={true}
-              placeholder="Enter your username"
-              onChange={handlechange}
-            ></input></>)}
-         
+            {!isLogin && (
               <>
                 <label
-                  for="emailId"
-                  class="block text-sm font-medium font-Poppins leading-6 text-gray-900"
+                  for="username"
+                  class="block text-sm font-lg font-Poppins leading-6 text-gray-900"
                 >
-                  Email
+                  Username
                 </label>
                 <input
-                  value={formdata.emailid}
-                  name="emailid"
-                  type="email"
-                  className="my-1.5 block w-full rounded-md border-0 px-1.5 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 placeholder:font-Poppins focus:ring-2 focus:ring-inset focus:ring-neutral-900 text-sm leading-6"
-                  placeholder="emailId"
+                  value={formdata.username}
+                  name="username"
+                  type="text"
+                  className="my-1.5 block w-full font-Poppins rounded-md border-0 px-1.5 py-1.5  text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 placeholder:font-Poppins focus:ring-2 focus:ring-inset focus:ring-neutral-900 text-sm leading-6"
                   required={true}
+                  placeholder="Enter your username"
                   onChange={handlechange}
                 ></input>
               </>
-            
+            )}
+
+            <>
+              <label
+                for="emailId"
+                class="block text-sm font-medium font-Poppins leading-6 text-gray-900"
+              >
+                Email
+              </label>
+              <input
+                value={formdata.emailid}
+                name="emailid"
+                type="email"
+                className="my-1.5 block w-full rounded-md border-0 px-1.5 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 placeholder:font-Poppins focus:ring-2 focus:ring-inset focus:ring-neutral-900 text-sm leading-6"
+                placeholder="Enter your email"
+                required={true}
+                onChange={handlechange}
+              ></input>
+            </>
+
             <label
               for="password"
               class="block text-sm font-medium font-Poppins leading-6 text-gray-900"
