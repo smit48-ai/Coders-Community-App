@@ -41,16 +41,12 @@ function Carousel() {
     return () => {
       clearInterval(timer);
     };
-  }, [mouseOver]);
+  }, [mouseOver, slides.length]);
 
   const nextSlide = () => {
     const isLastSlide = currentIndex === slides.length - 1;
     const newIndex = isLastSlide ? 0 : currentIndex + 1;
     setCurrentIndex(newIndex);
-  };
-
-  const goToSlide = (slideIndex) => {
-    setCurrentIndex(slideIndex);
   };
 
   return (

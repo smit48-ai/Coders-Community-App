@@ -120,11 +120,10 @@ function Card(props) {
               </div>
             </Link>
             <div>
-              <a href="">
-                <Link to={`/Profile/${authoruser?._id}`}>
-                  By {authoruser.username}
-                </Link>
-              </a>
+              <Link to={`/Profile/${authoruser?._id}`}>
+                By {authoruser.username}
+              </Link>
+
               <div>
                 {monthNames[date.getMonth()]} {date.getDate()},{" "}
                 {date.getFullYear()}

@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { MailIcon } from "@heroicons/react/outline";
 
 const VerifyEmail = () => {
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
       <motion.div

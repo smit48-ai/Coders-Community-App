@@ -93,14 +93,14 @@ function Profile() {
       setuser({ ...user, ProfilePicture: profileimg.value });
       dispatch(UpdateProfileImg(profileimg, user));
     }
-  }, [profileimg, dispatch]);
+  }, [profileimg, dispatch, user]);
 
   useEffect(() => {
     if (coverimg) {
       setuser({ ...user, CoverPicture: coverimg });
       dispatch(UpdateCoverImg(coverimg, user));
     }
-  }, [coverimg, dispatch]);
+  }, [coverimg, dispatch, user]);
 
   //other functions
   function grantedit() {

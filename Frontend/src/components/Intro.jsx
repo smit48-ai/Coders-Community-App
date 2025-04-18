@@ -23,7 +23,7 @@ function Intro(props) {
         </Link>
       </div>
       <div className="">
-        <img src={hero}></img>
+        <img src={hero} alt="hero"></img>
       </div>
     </div>
   );

@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts } from "../Actions/Posts";
 import Card from "./Card";
-import { useNavigate } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
 
 //TODO: sort the posts by latest

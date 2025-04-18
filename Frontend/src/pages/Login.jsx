@@ -69,7 +69,7 @@ function LoginPage() {
         }
       }
     }
-  }, [user, navigate]);
+  }, [user, navigate, isLogin, isSubmitted]);
 
   //after submit
   function handlesubmit(e) {

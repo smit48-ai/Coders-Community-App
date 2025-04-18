@@ -12,10 +12,8 @@ import {
 } from "../Actions/Posts";
 import { deletePost } from "../Actions/Posts";
 import { Link } from "react-router-dom";
-import ReactMarkdown from "react-markdown";
 
 //material ui compontents
-import DeleteIcon from "@mui/icons-material/Delete";
 import { AddComment } from "../API/posts";
 import Markdownrender from "../components/Markdownrender";
 import Footer from "../components/Footer";
@@ -79,12 +77,12 @@ function Readpost() {
   useEffect(() => {
     const newstate = post?.Likes.includes(Currentuser?._id) ? true : false;
     setliked(newstate);
-  }, [post]);
+  }, [post, Currentuser]);
 
   useEffect(() => {
     const newstate = post?.Saves.includes(Currentuser?._id) ? true : false;
     setsaved(newstate);
-  }, [post]);
+  }, [post, Currentuser]);
 
   //TODO: manage in reducer ig
   useEffect(() => {
@@ -274,16 +272,6 @@ function Readpost() {
                   {new Date(post.createdAt.slice(0, 115)).getFullYear()}
                 </div>
               </div>
-            </div>
-
-            <div>
-              {post.Tags.map((tag) => {
-                return (
-                  <a className="grid select-none items-center whitespace-nowrap rounded-lg bg-gray-900/10 py-1.5 px-3 font-Poppins text-xs font-bold text-gray-900">
-                    {tag}
-                  </a>
-                );
-              })}
             </div>
 
             <div className="text-xl font-Poppins">

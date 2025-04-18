@@ -7,14 +7,12 @@ import Alert from "@mui/material/Alert";
 
 //actions
 import { createPost } from "../Actions/Posts";
-import { useNavigate } from "react-router-dom";
 import TextEditor from "./TextEditor";
 
 function Postform() {
   const dispatch = useDispatch();
   const [open, setopen] = useState(false);
   const CurrentUser = useSelector((state) => state.User.userdata);
-  const [TagName, setTagName] = useState("");
   const [formdata, setfromdata] = useState({
     Title: "",
     Author: "",
@@ -24,7 +22,6 @@ function Postform() {
   });
 
   //reffernce to textarea element same as selectior in js
-  const textarea = useRef(null);
 
   //Publish the post
   function Publish(event) {

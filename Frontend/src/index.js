@@ -7,7 +7,6 @@ import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import { posts } from "./Reducers/PostReducers";
 import { User } from "./Reducers/UserReducers";
-import MainNavBar from "./components/MainNavbar";
 const store = configureStore({ reducer: { posts, User }, devTools: true });
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

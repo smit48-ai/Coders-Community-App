@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 function Pagenotfound() {
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-slate-100 to-slate-300 px-4">
       <motion.div

@@ -1,16 +1,13 @@
 import React, { useState } from "react";
 import MainNavBar from "../components/MainNavbar";
 import Feedpage from "../components/Feedpage";
-import MenuList from "../components/MenuList";
 import "./Main.css";
 import UserGroup from "../components/UserGroup";
 import { Link } from "react-router-dom";
 //icons
 import HomeIcon from "@mui/icons-material/Home";
 import ListIcon from "@mui/icons-material/List";
-import StyleIcon from "@mui/icons-material/Style";
 import PhoneIcon from "@mui/icons-material/Phone";
-import CloseIcon from "@mui/icons-material/Close";
 import CreateIcon from "@mui/icons-material/Create";
 import Footer from "../components/Footer";
 
@@ -48,7 +45,7 @@ function Main() {
           </span>
           <input
             type="text"
-            className="w-full py-2 pl-10 pr-4 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-gray-700 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-gray-300 focus:outline-none"
+            className="w-full py-2 pl-10 pr-4 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-gray-700 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-gray-300"
             placeholder="Search"
             onChange={(e) => {
               setSearchitem(e.target.value);

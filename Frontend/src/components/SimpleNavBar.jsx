@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const SimpleNavBar = ({ location }) => {
   const navigate = useNavigate();
   return (
-    <div className="flex justify-between p-2 w-full items-center bg-white shadow z-50 ring-3 ring-gray-300 p-4">
+    <div className="flex justify-between w-full items-center bg-white shadow z-50 ring-3 ring-gray-300 p-4">
       <h1 className="text-4xl">{location}</h1>
       <button
         type="submit"

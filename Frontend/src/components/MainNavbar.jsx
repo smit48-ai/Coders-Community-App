@@ -99,7 +99,7 @@ function MainNavBar(props) {
                       </span>
                       <input
                         type="text"
-                        className="w-full py-2 pl-10 pr-4 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-gray-700 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-gray-300 focus:outline-none"
+                        className="w-full py-2 pl-10 pr-4 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-gray-700 dark:focus:border-blue-300 focus:ring focus:ring-opacity-40 focus:ring-gray-300 focus:outline-none"
                         placeholder="Search"
                         onChange={(e) => {
                           setSearchitem(e.target.value);
