@@ -38,7 +38,7 @@ function Postform() {
       Tags: [],
       Content: "",
       CoverImage: null,
-      Likes: 0,
+      Likes: [],
     });
   }
 
