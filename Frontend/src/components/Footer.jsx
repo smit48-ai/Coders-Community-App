@@ -55,7 +55,7 @@ const Footer = () => {
             />
           </div>
         </div>
-        <p className="font-sans p-8 text-start md:text-center md:text-lg md:p-4">
+        <p className="font-sans p-8 text-center md:text-center md:text-lg md:p-4">
           © 2024 Transfer. All rights reserved.
         </p>
       </div>

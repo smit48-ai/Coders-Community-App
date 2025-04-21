@@ -16,18 +16,28 @@ import Spinner from "../components/Spinner";
 function Profile() {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [canedit, setedit] = useState(false);
+
   const [user, setuser] = useState(null);
   const posts = useSelector((state) => state.posts);
+
   const [profileimg, setprofileimg] = useState(null);
   const [coverimg, setcoverimg] = useState(null);
+
   const currentUser = useSelector((state) => state.User.userdata);
   const allUsers = useSelector((state) => state.User.allUsers);
+  const postofuser = posts?.filter((post) => {
+    return post.Author === user?._id;
+  });
+
   const [followedUsers, setFollowedUsers] = useState([]);
+
   const [isFollow, setisFollow] = useState(
     currentUser?.Following.includes(user?._id) ? true : false
   );
+
   const params = useParams();
   const dispatch = useDispatch();
+
   const [Interest, setInterest] = useState("");
   const [Formdata, setFromdata] = useState({
     username: "",
@@ -36,20 +46,19 @@ function Profile() {
     Password: "",
   });
 
+  //getting the list of all the users user is following
   useEffect(() => {
     setFollowedUsers(allUsers?.filter((x) => user?.Following.includes(x._id)));
   }, [user, allUsers]);
 
+  //for follow and unfollow button logic
   useEffect(() => {
     if (user && currentUser) {
       setisFollow(currentUser?.Following.includes(user?._id) ? true : false);
     }
   }, [currentUser, user]);
 
-  const postofuser = posts?.filter((post) => {
-    return post.Author === user?._id;
-  });
-
+  //just counting the popsts related to a user
   function CountPosts() {
     var ct = 0;
     if (posts && user) {
@@ -63,9 +72,9 @@ function Profile() {
   }
   const postcount = CountPosts();
 
-  useEffect(() => {
-    dispatch(getAllUsers());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getAllUsers());
+  // }, [dispatch]);
 
   useEffect(() => {
     async function getUserData() {
@@ -75,32 +84,42 @@ function Profile() {
     getUserData();
   }, [params]);
 
-  async function handlefollow() {
+  //handling follow unfollow button logic
+  function handlefollow() {
     if (!isFollow) {
       dispatch(FollowUser(currentUser?._id, params.id));
-      setuser({ ...user, Followers: [...user.Followers, currentUser._id] });
+      setuser((user) => {
+        return { ...user, Followers: [...user.Followers, currentUser._id] };
+      });
     } else {
       dispatch(UnFollowUser(currentUser?._id, params.id));
       const newFollowersList = user.Followers.filter(
         (x) => x !== currentUser._id
       );
-      setuser({ ...user, Followers: [...newFollowersList] });
+      setuser((user) => {
+        return { ...user, Followers: [...newFollowersList] };
+      });
     }
   }
+
   //for cover and profile images
   useEffect(() => {
     if (profileimg) {
-      setuser({ ...user, ProfilePicture: profileimg.value });
+      setuser((user) => {
+        return { ...user, ProfilePicture: profileimg.value };
+      });
       dispatch(UpdateProfileImg(profileimg, user));
     }
-  }, [profileimg, dispatch, user]);
+  }, [profileimg, dispatch]);
 
   useEffect(() => {
     if (coverimg) {
-      setuser({ ...user, CoverPicture: coverimg });
+      setuser((user) => {
+        return { ...user, CoverPicture: coverimg };
+      });
       dispatch(UpdateCoverImg(coverimg, user));
     }
-  }, [coverimg, dispatch, user]);
+  }, [coverimg, dispatch]);
 
   //other functions
   function grantedit() {
@@ -113,7 +132,7 @@ function Profile() {
     setedit((prev) => !prev);
   }
 
-  async function handleeditingProfile() {
+  function handleeditingProfile() {
     setuser({ ...user, ...Formdata });
     dispatch(UpdateBio(Formdata, user._id));
     setedit((prev) => !prev);
@@ -388,13 +407,13 @@ function Profile() {
                 <p className="text-sm text-gray-500">Followers</p>
               </div>
               <div>
-                <p className="text-xl font-bold text-gray-800">
-                  {user?.Following.length}
-                </p>
+                <p className="text-xl font-bold text-gray-800">{postcount}</p>
                 <p className="text-sm text-gray-500">Posts</p>
               </div>
               <div>
-                <p className="text-xl font-bold text-gray-800">{postcount}</p>
+                <p className="text-xl font-bold text-gray-800">
+                  {user?.Following.length}
+                </p>
                 <p className="text-sm text-gray-500">Following</p>
               </div>
             </div>

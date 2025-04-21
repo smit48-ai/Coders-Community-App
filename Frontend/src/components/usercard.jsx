@@ -7,8 +7,10 @@ import { FollowUser, UnFollowUser } from "../Actions/user";
 const Usercard = (props) => {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const dispatch = useDispatch();
+
   const currentuser = useSelector((state) => state.User.userdata);
   const [isFollow, setisFollow] = useState(false);
+
   useEffect(() => {
     const newstate = currentuser?.Following?.includes(props.user._id)
       ? true
