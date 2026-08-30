@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../API/user";
-import { UpdateProfileImg, UpdateCoverImg, getAllUsers } from "../Actions/user";
+import { UpdateProfileImg, UpdateCoverImg } from "../Actions/user";
 import Card from "../components/Card";
 import { UpdateBio } from "../Actions/user";
 import { FollowUser, UnFollowUser } from "../Actions/user";
