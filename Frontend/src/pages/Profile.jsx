@@ -110,7 +110,7 @@ function Profile() {
       });
       dispatch(UpdateProfileImg(profileimg, user));
     }
-  }, [profileimg, dispatch]);
+  }, [profileimg, dispatch, user]);
 
   useEffect(() => {
     if (coverimg) {
@@ -119,7 +119,7 @@ function Profile() {
       });
       dispatch(UpdateCoverImg(coverimg, user));
     }
-  }, [coverimg, dispatch]);
+  }, [coverimg, dispatch, user]);
 
   //other functions
   function grantedit() {
