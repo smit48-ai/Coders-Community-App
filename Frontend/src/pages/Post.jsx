@@ -1,18 +1,16 @@
-import React from 'react';
-import Header from '../components/Header';
-import Postform from '../components/Postform';
-import './Post.css';
-import MainNavBar from '../components/MainNavbar';
-import MenuList from '../components/MenuList';
+import React from "react";
+import Postform from "../components/Postform";
+import SimpleNavBar from "../components/SimpleNavBar";
+import Footer from "../components/Footer";
 
-function Post(){
-     
-    return <div className='Postpage'>
-           <MainNavBar></MainNavBar>
-           <div style={{display:"flex", overflowY:"scroll"}}>
-              <Postform></Postform>
-           </div>
+function Post() {
+  return (
+    <div className="bg-slate-200 min-h-screen ">
+      <SimpleNavBar location={"Create Post"} />
+      <Postform></Postform>
+      <Footer />
     </div>
- }
- 
- export default Post;
+  );
+}
+
+export default Post;
